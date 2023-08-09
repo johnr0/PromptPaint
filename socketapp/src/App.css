@@ -1,0 +1,359 @@
+body{
+  touch-action: none;
+  overflow: hidden;
+}
+h1, h2, h3, h4, h5, h6{
+  margin: 0.5rem 0 !important;
+}
+
+.main{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.oneboard{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.moodboard{
+  overflow: hidden;
+  flex: 1;
+  border: solid 1px #333333;
+  background-color: #eeeeee;
+  position: relative;
+}
+
+.controller{
+  background-color: #333333;
+  border-radius: 10px;
+  padding: 5px;
+  color: white;
+}
+
+.moodboard_main_controller{
+  position: absolute;
+  width: 50px; 
+  height: 195px;
+  
+  left: 10px;
+  top: 10px;
+  
+}
+
+.moodboard_search_pane{
+  position: absolute;
+  width: calc(100% - 20px);
+  bottom: 0px;
+  left: 10px;
+  height: 42%;
+  min-height: 200px;
+}
+
+.moodboard_search_pane_open{
+  position: absolute;
+  cursor: default;
+  width: 180px;
+  height: 30px;
+  bottom: 0px;
+  left: 10px;
+  line-height: 18px;
+  text-align: center;
+}
+
+.moodboard_search_pane_subpane{
+  height: calc(100% - 30px);
+}
+
+.moodboard_search_pane_subpane_div{
+  height: 100%;
+  padding: 3px;
+  border: solid 1px white;
+  border-radius: 5px;
+}
+
+.moodboard_search_pane_close{
+  height: 27px;
+  border: solid 1px white;
+  border-radius: 10px;
+  padding: 3px;
+  width: fit-content;
+
+}
+
+.moodboard_image_add_controller{
+  position: absolute;
+  width: 360px;
+  height: 150px;
+  left: 70px;
+  top: 10px;
+
+}
+
+.moodboard_color_add_controller{
+  position: absolute;
+  width: 110px;
+  height: 45px;
+  left: 70px;
+  top: 10px;
+
+}
+
+.controller_button{
+  margin-bottom: 5px;
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+  text-align: center;
+  color: white;
+  cursor: default;
+
+}
+
+.controller_button_icon{
+  font-size: 40px;
+  
+}
+
+.boardrender{
+  overflow: hidden;
+  background-color: white;
+  position: absolute;
+}
+
+.sketchpad{
+  overflow: hidden;
+  flex: 1;
+  border: solid 1px #333333;
+  background-color: #eeeeee;
+  position: relative;
+}
+
+.moodboard_textbox{
+  border: solid 0px transparent;
+  resize: none;
+  overflow: hidden;
+  padding: 0px;
+  white-space: nowrap;
+  /* overflow-wrap: unset; */
+  line-break: unset;
+  /* word-wrap: none; */
+}
+
+.select_disabled{
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; 
+}
+
+.textSelectdisabled{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+  cursor: default;
+}
+
+.select_disabled::selection{
+  background:transparent
+}
+
+.sketchpad_main_controller{
+  position: absolute;
+  width: 50px; 
+  height: 270px;
+  
+  left: 10px;
+  top: 10px;
+  
+}
+
+.sketchpad_main_controllerAI{
+  position: absolute;
+  width: 50px; 
+  height: 312px;
+  
+  left: 10px;
+  top: 10px;
+  
+}
+
+.sketchpad_layer_controller{
+  position: absolute;
+  width: 50px; 
+  height: 390px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  right: 10px;
+  top: 10px;
+  
+}
+
+.layer_box::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.layer_box {
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
+}
+
+.sketchpad_brush_controller{
+  position: absolute;
+  width: 50px; 
+  height: 100px;
+  
+  left: 60px;
+  top: 0px;   
+}
+
+.sketchpad_brush_size_controller{
+  position: absolute;
+  width: 200px; 
+  height: 200px;
+  
+  left: 60px;
+  top: 0px;   
+}
+
+input[type=range][orient=vertical]
+{
+  writing-mode: bt-lr; /* IE */
+  -webkit-appearance: slider-vertical; /* WebKit */
+
+  height: 184px;
+  padding: 0 0px;
+  margin: 0;
+}
+
+.sketchpad_erase_controller{
+  position: absolute;
+  width: 50px; 
+  height: 45px;
+  
+  left: 60px;
+  top: 0px;   
+}
+
+.sketchpad_style_controller{
+  position: absolute;
+  width: 314px; 
+  height: 46px;
+  
+  left: 60px;
+  top: 0px;   
+}
+
+.sketchpad_style_controller2{
+  position: absolute;
+  width: calc(100% - 20px); 
+  height: 45%;
+  left: 10px;
+  
+  bottom: 0px;   
+}
+
+.sketchpad_erase_size_controller{
+  position: absolute;
+  width: 200px; 
+  height: 200px;
+  
+  left: 60px;
+  top: 0px;   
+}
+
+.brush_cursor{
+  /* cursor: url('/static/brush.png'), auto; */
+}
+
+.login{
+  text-align: center;
+  width: 300px;
+  height: 330px;
+  border: solid 4px #333333;
+  display: block;
+  margin: auto;
+  position: relative;
+  top: calc(50% - 165px);
+  padding: 20px;
+  
+}
+
+.collaborator_badge{
+  border: solid 1px black;
+  padding: 3px;
+  margin-right: 3px;
+}
+
+.collaborator_badge_remove{
+  color: red;
+}
+
+.collaboratorCursor{
+  width: 50px;
+  height: 10px;
+  position: absolute;
+  /* background-color: black; */
+  pointer-events: none;
+}
+
+.undo_controller{
+  position: absolute;
+  right: 70px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.tiny-btn{
+  font-size: 12px;
+  padding: 3px;
+  height: fit-content;
+  line-height: inherit;
+}
+
+.colorHandle{
+  padding: 0;
+  width: 100%;
+  height: 20px;
+}
+
+.withCircle{
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 20px;
+  line-height: 100%;
+
+  background: #fff;
+  border: 2px solid #666;
+  color: #666;
+  text-align: center;
+}
+
+.search-panel-tab{
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.panel_collapser{
+  position:absolute;
+  height: 65px;
+  width: 20px;
+  background-color: #000000;
+  color: white;
+  text-align: center;
+  vertical-align: center;
+  padding-top: 19px;
+}

@@ -1,0 +1,208 @@
+<style type="text/css">
+  .column {
+    float: left;
+    width: 50%;
+  }   
+
+  .onefifth {
+    float: left;
+    width: 20%;
+  }   
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  .marginTop{
+      margin-top:10px;
+  }
+  
+  .slider{
+      height:10;
+      width:300px;
+      margin: auto;
+      display: block;
+  }
+  
+  .likert ul
+  {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+  }
+  
+  .likert li
+  {
+      float: left;
+      text-align: left;
+      list-style-type: none;
+  }
+  </style>
+  <script src="https://assets.crowd.aws/crowd-html-elements.js"></script><crowd-form answer-format="flatten-objects"> <!--Overview Page-->
+
+  <!--Pre Test Instruction Page-->
+  
+  <div class="instruction" id="page_instruction"><strong>Instruction</strong>
+    <p>In this task, you will be given two images along with two other "target" images. For given images, you will be asked to evaluate 1) how similar two images are, and 2) how much one of the image is more similar to the target images compared to the other.</p>
+    <p>Once ready, press next to proceed.</p>
+  </div>
+  <!--Pre Test Page-->
+
+  <!--Intervention Page-->
+  
+  <div class="intervention" id="page_intervention0" style="display: none">
+  <div class="row">
+    Below two images are AI-generated images to compare. The left image is generated with the left prompt below the left image. The right image is steered to include elements in the right prompt below the right image.
+  </div>
+  
+  <div class="row marginTop">
+    <div class="column">
+        <img src="${original_link_0}"/>
+        <div>${original_descriptor_0}</div>
+    </div>
+    
+    <div class="column">
+        <img src="${added_link_0}"/>
+        <div>${added_descriptor_0}</div>
+    </div>
+  </div>
+  
+  <div class="row marginTop">
+    <strong>Q1.</strong> Is the image on the right similar to the image on the left?
+    <small>If two images are almost the same, choose "very similar."</small>
+  </div>
+  <div class="row">
+    <div class="onefifth"><input name="sim0" type="radio" value="0" />Very dissimilar</div>
+    <div class="onefifth"><input name="sim0" type="radio" value="1" />Dissimilar</div>
+    <div class="onefifth"><input name="sim0" type="radio" value="2" />Neither Dissimilar nor similar</div>
+    <div class="onefifth"><input name="sim0" type="radio" value="3" />Similar</div>
+    <div class="onefifth"><input name="sim0" type="radio" value="4" />Very similar</div>
+  </div>
+
+  <div class="row marginTop">
+    <strong>Q2.</strong> Do you agree with the following?: Compared to the image on the left, does the image on the right has more of characteristic mentioned in the right prompt?
+    <small>If two images are almost the same, choose "strongly disagree."</small>
+  </div>
+  <div class="row">
+    <div class="onefifth"><input name="con0" type="radio" value="0" />Strongly disagree</div>
+    <div class="onefifth"><input name="con0" type="radio" value="1" />Disagree</div>
+    <div class="onefifth"><input name="con0" type="radio" value="2" />Neither agree nor disagree</div>
+    <div class="onefifth"><input name="con0" type="radio" value="3" />Agree</div>
+    <div class="onefifth"><input name="con0" type="radio" value="4" />Strongly agree</div>
+  </div>
+  
+  </div>
+  
+
+  
+  
+  <p>
+    <input id="prev" style="display: none" type="button" value="prev" /> 
+    <input id="next" type="button" value="next" /> 
+    <input id="confirm" style="display: none" type="button" value="confirm" /> 
+    <input disabled="disabled" id="submitButton" style="display: none" type="submit" value="Submit" /></p>
+  <script language='Javascript'>
+          var page_num = 0;
+          var page_id_list = [
+          "page_instruction", 
+          "page_intervention0", "page_intervention1",
+          "page_intervention2", "page_intervention3", 
+          "page_intervention4", "page_intervention5",
+          "page_intervention6", "page_intervention7", 
+          "page_intervention8", "page_intervention9", 
+          "page_intervention10", "page_intervention11", 
+          "page_intervention12", "page_intervention13", 
+          "page_intervention14", "page_intervention15", 
+          "page_intervention16", "page_intervention17",
+          "page_intervention18", "page_intervention19",]
+          var max_page_num = page_id_list.length;
+          
+          document.getElementById('next').onclick=function(){
+              console.log(page_id_list[page_num]);
+              // When the page is overview.
+              if (page_id_list[page_num].includes('instruction')){
+                  document.getElementById('prev').style.display = ""
+                  document.getElementById(page_id_list[page_num+1]).style.display = ""
+                  document.getElementById(page_id_list[page_num]).style.display = "none"
+                  page_num ++;
+              }
+              
+              // When the page is instruction
+              else if (page_id_list[page_num].includes('intervention'))
+              {
+                var intv_id = page_id_list[page_num].substring(17, page_id_list[page_num].length);
+                if (checkLikertDone(intv_id)) {
+                    if (page_id_list[page_num].includes('19'))
+                    {
+                        document.getElementById('submitButton').style.display = "";
+                        document.getElementById('next').style.display = "none";
+                        document.getElementById('prev').style.display = "";
+                    }
+                    else
+                    {
+                        document.getElementById('next').style.display = "";
+                        document.getElementById('prev').style.display = "";
+                    }
+                    document.getElementById(page_id_list[page_num+1]).style.display = ""
+                    document.getElementById(page_id_list[page_num]).style.display = "none"
+                    page_num ++;
+                }else
+                  {
+                      alert("Please fill answer of the confidence and frustration!");
+                  }
+              }
+            
+          }
+          
+          
+          
+          document.getElementById('prev').onclick=function(){
+              document.getElementById('next').style.display = "";
+              if(page_num==1){
+                document.getElementById('prev').style.display = "none";
+              }
+              
+              document.getElementById(page_id_list[page_num]).style.display = "none"
+              document.getElementById(page_id_list[page_num-1]).style.display = ""
+              page_num --;
+          }
+          
+          document.getElementById('submitButton').onclick=function(){
+              if (checkLikerDone()) {
+                  // Submit
+              }
+              else {
+                  alert("Please select your answers.");
+              }
+          }
+          
+          document.getElementById('page_intervention19').onclick=function(){
+              if(checkLikertDone(19)){
+                  document.getElementById('submitButton').disabled=false
+              }else{
+                  document.getElementById('submitButton').disabled=true
+              }
+          }
+          
+          function checkInterventionDone(id){
+              return true
+              var getSelectedValue = document.querySelector('input[name="intv'+id+'"]:checked');
+              if (getSelectedValue != null){
+                  return true;
+              }
+              return false;
+          }
+  
+          function checkLikertDone(id){
+              var simValue = document.querySelector('input[name="sim'+id+'"]:checked');
+              var conValue = document.querySelector('input[name="con'+id+'"]:checked');
+              if (simValue == null || conValue == null){
+                  return false;
+              }
+              return true;        
+          }
+          
+          
+      </script> </crowd-form>
